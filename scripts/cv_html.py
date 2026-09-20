@@ -81,6 +81,7 @@ def build_online_cv(output_path, html_path, styles):
     doc.addPageTemplates(PageTemplate(id="cv", frames=[frame]))
     right_style = ParagraphStyle("cv_right", parent=styles["body"], alignment=TA_RIGHT)
     bullet_style = ParagraphStyle("cv_bullet", parent=styles["body"], spaceBefore=0, spaceAfter=1)
+    links_style = ParagraphStyle("cv_links", parent=styles["project_links"], spaceBefore=0)
     header = main.find("header")
     story = [
         Paragraph(inline(header.find("h1")).upper(), styles["name"]),
@@ -138,7 +139,7 @@ def build_online_cv(output_path, html_path, styles):
                 ]], [doc.width - 14 * mm, 14 * mm]))
                 links = element.find("div[@class='links']")
                 if links is not None:
-                    item.append(Paragraph(inline(links), styles["project_links"]))
+                    item.append(Paragraph(inline(links), links_style))
                 item.append(ListFlowable([
                     ListItem(Paragraph(inline(li), bullet_style))
                     for li in element.findall("ul/li")

@@ -62,7 +62,7 @@ with pymupdf.open(pdf_path) as pdf:
                       "WebBanHangOnline -", "Scant Reports -", "Student Performance -"]:
             for box in page.search_for(label):
                 assert abs(box.x0 - left) < 0.5, f"{label} is offset from the left margin by {box.x0 - left:.1f}pt"
-        for label in ["Hà Nội, Việt Nam", "2023 - 2026"]:
+        for label in ["Hà Nội, Việt Nam", "2023 – nay"]:
             for box in page.search_for(label):
                 assert abs(box.x1 - right) < 0.5, f"{label} must align with the right margin"
         for block in page.get_text("dict")["blocks"]:
