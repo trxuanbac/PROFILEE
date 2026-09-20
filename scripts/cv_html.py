@@ -4,11 +4,13 @@ from html.parser import HTMLParser
 import xml.etree.ElementTree as ET
 
 from reportlab.lib import colors
+from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.platypus import (
-    HRFlowable, KeepTogether, ListFlowable, ListItem, Paragraph,
-    SimpleDocTemplate, Spacer, Table, TableStyle,
+    BaseDocTemplate, Frame, HRFlowable, KeepTogether, ListFlowable, ListItem,
+    PageTemplate, Paragraph, Spacer, Table, TableStyle,
 )
 
 
@@ -64,12 +66,20 @@ def build_online_cv(output_path, html_path, styles):
     if main is None:
         raise ValueError("Online CV must have a main element")
 
-    doc = SimpleDocTemplate(
+    doc = BaseDocTemplate(
         str(output_path), pagesize=A4,
         rightMargin=12 * mm, leftMargin=12 * mm,
         topMargin=12 * mm, bottomMargin=12 * mm,
         title="CV Trần Xuân Bắc - Tiếng Việt", author="Trần Xuân Bắc",
     )
+    # Use the same printable width for paragraphs, rules, and tables.
+    # ReportLab's default frame adds padding that tables sized to doc.width exceed.
+    frame = Frame(
+        doc.leftMargin, doc.bottomMargin, doc.width, doc.height,
+        leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0,
+    )
+    doc.addPageTemplates(PageTemplate(id="cv", frames=[frame]))
+    right_style = ParagraphStyle("cv_right", parent=styles["body"], alignment=TA_RIGHT)
     header = main.find("header")
     story = [
         Paragraph(inline(header.find("h1")).upper(), styles["name"]),
@@ -79,11 +89,12 @@ def build_online_cv(output_path, html_path, styles):
     ]
 
     def table(rows, widths):
-        result = Table(rows, colWidths=widths)
+        result = Table(rows, colWidths=widths, hAlign="LEFT")
         result.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
             ("LEFTPADDING", (0, 0), (-1, -1), 0),
             ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+            ("RIGHTPADDING", (-1, 0), (-1, -1), 0),
             ("TOPPADDING", (0, 0), (-1, -1), 1),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
         ]))
@@ -111,13 +122,14 @@ def build_online_cv(output_path, html_path, styles):
         for element in body:
             if element.get("class") == "row":
                 story.append(table([[
-                    Paragraph(inline(cell), styles["body"]) for cell in element
+                    Paragraph(inline(cell), right_style if cell.get("class") == "right" else styles["body"])
+                    for cell in element
                 ]], [doc.width * 0.72, doc.width * 0.28]))
             elif element.get("class") == "item":
                 title = element.find("div[@class='item-title']")
                 item = [table([[
                     Paragraph(inline(title[0]), styles["project_header"]),
-                    Paragraph(inline(title[1]), styles["body"]),
+                    Paragraph(f"<i>{inline(title[1])}</i>", right_style),
                 ]], [doc.width - 14 * mm, 14 * mm])]
                 links = element.find("div[@class='links']")
                 if links is not None:

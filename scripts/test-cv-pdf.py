@@ -50,3 +50,24 @@ with pymupdf.open(pdf_path) as pdf:
     assert "mailto:Bxuan964@gmail.com" in links, "PDF email link must remain clickable"
     assert "https://github.com/xuanbackhoaibu/WebBanHangOnline.git" in links
     print(f"PDF matches all {len(content.content)} online content fragments across {len(pdf)} page(s).")
+
+    # Table cells and ordinary paragraphs must share the section rules' margins.
+    for page in pdf:
+        rules = [drawing["rect"] for drawing in page.get_drawings()
+                 if drawing["type"] == "s" and drawing["rect"].width > page.rect.width / 2]
+        assert rules, "CV page must have section dividers"
+        left, right = rules[0].x0, rules[0].x1
+        for label in ["HỌC VẤN", "Trường Đại học Đại Nam", "Tiếng Anh:",
+                      "KỸ NĂNG CHUYÊN MÔN", "Ngôn ngữ lập trình:", "DỰ ÁN",
+                      "WebBanHangOnline -", "Scant Reports -", "Student Performance -"]:
+            for box in page.search_for(label):
+                assert abs(box.x0 - left) < 0.5, f"{label} is offset from the left margin by {box.x0 - left:.1f}pt"
+        for label in ["Hà Nội, Việt Nam", "2023 - 2026"]:
+            for box in page.search_for(label):
+                assert abs(box.x1 - right) < 0.5, f"{label} must align with the right margin"
+        for block in page.get_text("dict")["blocks"]:
+            for line in block.get("lines", []):
+                text = "".join(span["text"] for span in line["spans"])
+                if text in ["2024", "2026"]:
+                    assert abs(line["bbox"][2] - right) < 0.5, "Project years must align right"
+    print("PDF table content, headings, and dates share consistent margins.")
