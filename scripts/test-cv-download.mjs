@@ -13,12 +13,12 @@ assert.equal(existsSync(pdfPath), true, `CV PDF file should exist: ${pdfPath}`);
 
 assert.match(
   heroVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-layout2`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-experience`;/,
   "Hero Download CV button should open the cache-busted CV page first",
 );
 assert.match(
   contactVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-layout2`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-experience`;/,
   "Contact Download CV link should open the cache-busted CV page first",
 );
 assert.doesNotMatch(
@@ -29,7 +29,7 @@ assert.doesNotMatch(
 
 assert.match(
   cvHtml,
-  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260920-vi-layout2"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Tải CV PDF<\/a>/,
+  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260920-vi-experience"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Tải CV PDF<\/a>/,
   "CV page should have a cache-busted PDF download link",
 );
 assert.match(

@@ -80,6 +80,7 @@ def build_online_cv(output_path, html_path, styles):
     )
     doc.addPageTemplates(PageTemplate(id="cv", frames=[frame]))
     right_style = ParagraphStyle("cv_right", parent=styles["body"], alignment=TA_RIGHT)
+    bullet_style = ParagraphStyle("cv_bullet", parent=styles["body"], spaceBefore=0, spaceAfter=1)
     header = main.find("header")
     story = [
         Paragraph(inline(header.find("h1")).upper(), styles["name"]),
@@ -127,15 +128,19 @@ def build_online_cv(output_path, html_path, styles):
                 ]], [doc.width * 0.72, doc.width * 0.28]))
             elif element.get("class") == "item":
                 title = element.find("div[@class='item-title']")
-                item = [table([[
+                item = []
+                company = element.find("p[@class='item-company']")
+                if company is not None:
+                    item.append(Paragraph(inline(company), styles["project_header"]))
+                item.append(table([[
                     Paragraph(inline(title[0]), styles["project_header"]),
                     Paragraph(f"<i>{inline(title[1])}</i>", right_style),
-                ]], [doc.width - 14 * mm, 14 * mm])]
+                ]], [doc.width - 14 * mm, 14 * mm]))
                 links = element.find("div[@class='links']")
                 if links is not None:
                     item.append(Paragraph(inline(links), styles["project_links"]))
                 item.append(ListFlowable([
-                    ListItem(Paragraph(inline(li), styles["body"]))
+                    ListItem(Paragraph(inline(li), bullet_style))
                     for li in element.findall("ul/li")
                 ], bulletType="bullet", leftIndent=12,
                     bulletFontName="TimesNewRoman", bulletFontSize=7))
