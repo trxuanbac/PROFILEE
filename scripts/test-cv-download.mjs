@@ -13,12 +13,12 @@ assert.equal(existsSync(pdfPath), true, `CV PDF file should exist: ${pdfPath}`);
 
 assert.match(
   heroVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=3770190`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi`;/,
   "Hero Download CV button should open the cache-busted CV page first",
 );
 assert.match(
   contactVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=3770190`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi`;/,
   "Contact Download CV link should open the cache-busted CV page first",
 );
 assert.doesNotMatch(
@@ -34,17 +34,17 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /BACKEND \.NET INTERN\/FRESHER \| SYSTEM ANALYST INTERN\/FRESHER/,
+  /LẬP TRÌNH BACKEND \.NET \| PHÂN TÍCH HỆ THỐNG — THỰC TẬP SINH \/ NHÂN VIÊN MỚI/,
   "Default CV should target only Backend .NET and System Analysis",
 );
 assert.match(
   cvHtml,
-  /Information Technology student seeking a Backend \.NET Intern\/Fresher or System Analyst Intern\/Fresher position\.\s+Looking to apply my experience in ASP\.NET Core, databases, REST APIs, and system analysis to real-world software projects\./,
-  "CV career objective should use the shortened target-role summary",
+  /Sinh viên Công nghệ thông tin mong muốn ứng tuyển vị trí thực tập sinh hoặc nhân viên mới trong lĩnh vực lập trình Backend \.NET hoặc phân tích hệ thống\.\s+Mong muốn vận dụng kinh nghiệm về ASP\.NET Core, cơ sở dữ liệu, REST API và phân tích hệ thống vào các dự án phần mềm thực tế\./,
+  "CV career objective should describe the target roles in Vietnamese",
 );
 assert.match(
   cvHtml,
-  /<div><strong>Languages:<\/strong><\/div>\s+<div>C#, Python, JavaScript, SQL, HTML\/CSS<\/div>/,
+  /<div><strong>Ngôn ngữ lập trình:<\/strong><\/div>\s+<div>C#, Python, JavaScript, SQL, HTML\/CSS<\/div>/,
   "CV skills should include the requested languages",
 );
 assert.match(
@@ -54,12 +54,12 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /<div><strong>Database:<\/strong><\/div>\s+<div>SQL Server, PostgreSQL, MySQL, SQLite<\/div>/,
+  /<div><strong>Cơ sở dữ liệu:<\/strong><\/div>\s+<div>SQL Server, PostgreSQL, MySQL, SQLite<\/div>/,
   "CV skills should include the requested databases",
 );
 assert.match(
   cvHtml,
-  /<div><strong>Tools & Others:<\/strong><\/div>\s+<div>Git, GitHub, Docker, Docker Compose, Postman, Bootstrap, jQuery, Gemini API<\/div>/,
+  /<div><strong>Công cụ và khác:<\/strong><\/div>\s+<div>Git, GitHub, Docker, Docker Compose, Postman, Bootstrap, jQuery, Gemini API<\/div>/,
   "CV skills should include the requested tools",
 );
 assert.doesNotMatch(
@@ -69,23 +69,23 @@ assert.doesNotMatch(
 );
 assert.match(
   cvHtml,
-  /WebBanHangOnline - Fashion E-commerce Website \| Personal Project/,
-  "CV WebBanHangOnline project title should use the shortened English version",
+  /WebBanHangOnline - Website thương mại điện tử thời trang \| Dự án cá nhân/,
+  "CV WebBanHangOnline project title should use Vietnamese",
 );
 assert.match(
   cvHtml,
-  /Built a fashion e-commerce system using ASP\.NET Core MVC, Entity Framework Core, SQL Server, Bootstrap, and jQuery\./,
+  /Xây dựng hệ thống thương mại điện tử thời trang bằng ASP\.NET Core MVC, Entity Framework Core, SQL Server, Bootstrap và jQuery\./,
   "CV WebBanHangOnline project should include the shortened stack summary",
 );
 assert.match(
   cvHtml,
-  /Analyzed and prepared system documentation including BRD, SRS, Use Case, ERD, API Specification, OpenAPI\/Swagger, Postman, and API test cases\./,
+  /Phân tích và xây dựng tài liệu hệ thống gồm BRD, SRS, Use Case, ERD, đặc tả API, tài liệu OpenAPI\/Swagger, bộ yêu cầu Postman và các ca kiểm thử API\./,
   "CV WebBanHangOnline project should include the system documentation summary",
 );
 assert.doesNotMatch(
   cvHtml,
-  /Website thương mại điện tử thời trang|Xây dựng hệ thống thương mại điện tử|Phân tích và xây dựng tài liệu/,
-  "CV WebBanHangOnline project should stay in English",
+  /Career Objective|Education|Technical Skills|Additional Coursework \/ Analysis|Personal Project|Course Project|Developed |Implemented |Researched /,
+  "Online CV should no longer contain English headings or project descriptions",
 );
 assert.doesNotMatch(
   cvHtml,

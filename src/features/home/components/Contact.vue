@@ -5,7 +5,7 @@ import { t } from "../../../i18n/utils/translate";
 import Social from "../../../components/Social.vue";
 
 const contactElement = ref<HTMLElement | null>(null);
-const cvPagePath = `${import.meta.env.BASE_URL}files/CV-Tran-Xuan-Bac.html?v=3770190`;
+const cvPagePath = `${import.meta.env.BASE_URL}files/CV-Tran-Xuan-Bac.html?v=20260920-vi`;
 
 onMounted(() => {
   if (contactElement.value) {
