@@ -106,7 +106,7 @@ def build_online_cv(output_path, html_path, styles):
                              spaceBefore=2, spaceAfter=5)
         divider.keepWithNext = True
         story.extend([
-            Spacer(1, 9),
+            Spacer(1, 7),
             Paragraph(inline(section.find("h2")).upper(), styles["section"]),
             divider,
         ])

@@ -13,12 +13,12 @@ assert.equal(existsSync(pdfPath), true, `CV PDF file should exist: ${pdfPath}`);
 
 assert.match(
   heroVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-title`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-objective`;/,
   "Hero Download CV button should open the cache-busted CV page first",
 );
 assert.match(
   contactVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-title`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260920-vi-objective`;/,
   "Contact Download CV link should open the cache-busted CV page first",
 );
 assert.doesNotMatch(
@@ -29,7 +29,7 @@ assert.doesNotMatch(
 
 assert.match(
   cvHtml,
-  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260920-vi-title"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Tải CV PDF<\/a>/,
+  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260920-vi-objective"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Tải CV PDF<\/a>/,
   "CV page should have a cache-busted PDF download link",
 );
 assert.match(
@@ -39,8 +39,8 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /Sinh viên Công nghệ thông tin mong muốn ứng tuyển vị trí thực tập sinh hoặc nhân viên mới trong lĩnh vực lập trình Backend \.NET hoặc phân tích hệ thống\.\s+Mong muốn vận dụng kinh nghiệm về ASP\.NET Core, cơ sở dữ liệu, REST API và phân tích hệ thống vào các dự án phần mềm thực tế\./,
-  "CV career objective should describe the target roles in Vietnamese",
+  /Mong muốn vận dụng kiến thức chuyên ngành vào các nghiệp vụ và dự án thực tế của công ty, đồng thời nâng cao kỹ năng phát triển phần mềm, cơ sở dữ liệu và phân tích hệ thống\.\s+Hướng đến việc đóng góp hiệu quả cho các dự án của doanh nghiệp và phát triển thành nhân sự có chuyên môn vững vàng trong tương lai\./,
+  "CV career objective should use the updated professional development summary",
 );
 assert.match(
   cvHtml,
