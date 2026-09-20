@@ -17,6 +17,20 @@ Built with **Vue 3**, **TypeScript**, and **Vite**. Motion via **GSAP** and **Le
 
 ## Content
 
+The default CV PDFs use `public/files/CV-Tran-Xuan-Bac.html` as their content source.
+After editing the online CV, regenerate and verify the downloads on macOS (the
+generator uses the installed Times New Roman fonts):
+
+```sh
+python3 -m pip install reportlab pymupdf
+python3 scripts/generate-cv-pdf.py --online-only
+python3 scripts/test-cv-pdf.py
+node scripts/test-cv-download.mjs
+```
+
+Commit both generated PDFs and update the PDF/page URL versions when publishing
+changes so returning visitors receive the new downloads.
+
 - **Projects**: `src/content/projects/{en,de}/<slug>.ts` - copy, tags, media, links. Slugs must align with `projectIds` in `src/content/projects/index.ts`.
 - **Previews / listing**: `src/content/projects/previews/`.
 - **Tags**: variants and labels live in `src/components/tagVariants.ts` (used by `Tag.vue` and content types).

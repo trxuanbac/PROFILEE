@@ -1,4 +1,6 @@
 from pathlib import Path
+import argparse
+from cv_html import build_online_cv
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.pagesizes import A4
@@ -25,6 +27,11 @@ def register_fonts():
     pdfmetrics.registerFont(TTFont("TimesNewRoman", FONT_DIR / "Times New Roman.ttf"))
     pdfmetrics.registerFont(TTFont("TimesNewRoman-Bold", FONT_DIR / "Times New Roman Bold.ttf"))
     pdfmetrics.registerFont(TTFont("TimesNewRoman-Italic", FONT_DIR / "Times New Roman Italic.ttf"))
+    pdfmetrics.registerFont(TTFont("TimesNewRoman-BoldItalic", FONT_DIR / "Times New Roman Bold Italic.ttf"))
+    pdfmetrics.registerFontFamily(
+        "TimesNewRoman", normal="TimesNewRoman", bold="TimesNewRoman-Bold",
+        italic="TimesNewRoman-Italic", boldItalic="TimesNewRoman-BoldItalic",
+    )
 
 
 def bullet_list(items, style):
@@ -223,8 +230,15 @@ def build_cv(output_path, cv_data):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--online-only", action="store_true", help="Generate only the default PDFs from the online CV")
+    args = parser.parse_args()
     register_fonts()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    for name in ["CV-Tran-Xuan-Bac.pdf", "CV-Tran-Xuan-Bac-2026.pdf"]:
+        build_online_cv(OUTPUT_DIR / name, OUTPUT_DIR / "CV-Tran-Xuan-Bac.html", get_styles())
+    if args.online_only:
+        return
 
     # 1. SYSTEM ANALYST INTERN
     sa_cv = {
@@ -362,57 +376,9 @@ def main():
         ],
     }
 
-    default_cv = {
-        "title": "BACKEND .NET INTERN/FRESHER | SYSTEM ANALYST INTERN/FRESHER",
-        "objective": "Information Technology student seeking a Backend .NET Intern/Fresher or System Analyst Intern/Fresher position. Looking to apply my experience in ASP.NET Core, databases, REST APIs, and system analysis to real-world software projects.",
-        "skills": [
-            ("Languages", "C#, Python, JavaScript, SQL, HTML/CSS"),
-            ("Backend", "C#, ASP.NET Core MVC/Web API, Entity Framework Core, RESTful API, ASP.NET Core Identity"),
-            ("Database", "SQL Server, PostgreSQL, MySQL, SQLite"),
-            ("Tools & Others", "Git, GitHub, Docker, Docker Compose, Postman, Bootstrap, jQuery, Gemini API"),
-        ],
-        "projects": [
-            {
-                "name": "WebBanHangOnline - Fashion E-commerce Website | Personal Project",
-                "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/WebBanHangOnline.git",
-                "bullets": [
-                    "Built a fashion e-commerce system using ASP.NET Core MVC, Entity Framework Core, SQL Server, Bootstrap, and jQuery.",
-                    "Developed product/category management, product variants, inventory, cart, wishlist, reviews, orders, and Admin/Customer flows with ASP.NET Core Identity.",
-                    "Developed REST APIs, payment flows (COD, VNPay, MoMo, VietQR), real-time chat with SignalR, and a Gemini-based product consultation chatbot.",
-                    "Analyzed and prepared system documentation including BRD, SRS, Use Case, ERD, API Specification, OpenAPI/Swagger, Postman, and API test cases.",
-                    "Containerized the application and SQL Server with Docker Compose, and prepared demo data for local deployment and testing.",
-                ],
-            },
-            {
-                "name": "Scant Reports - Data Upload and Report Export Web App (Self-developed Project)",
-                "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/scant.git",
-                "bullets": [
-                    "Developed a web app for user registration/login, CSV/XLSX upload, data processing, and report generation.",
-                    "Implemented admin/user roles, account management, password reset, audit log, health check, backup/restore, and deployment documentation.",
-                    "Supported exporting reports to HTML, summary CSV, DOCX, and PDF, with customizable HTML/Word report templates.",
-                    "Packaged the application with Docker and added unit tests for safer maintenance.",
-                ],
-            },
-            {
-                "name": "Student Performance - Data Mining Course Project",
-                "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/student_performance.git",
-                "bullets": [
-                    "Processed Student Performance data using Python, pandas, scikit-learn, mlxtend, matplotlib, and seaborn.",
-                    "Performed data cleaning, EDA, categorical encoding, scaling, stratified train/test split, Apriori association rules, and KMeans clustering.",
-                    "Built and evaluated classification models including Logistic Regression, Decision Tree, Random Forest, and LabelPropagation.",
-                ],
-            },
-        ],
-    }
-
     build_cv(OUTPUT_DIR / "CV-Tran-Xuan-Bac-System-Analyst.pdf", sa_cv)
     build_cv(OUTPUT_DIR / "CV-Tran-Xuan-Bac-Backend-NET.pdf", backend_cv)
     build_cv(OUTPUT_DIR / "CV-Tran-Xuan-Bac-API-Testing.pdf", testing_cv)
-    build_cv(OUTPUT_DIR / "CV-Tran-Xuan-Bac.pdf", default_cv)
-    build_cv(OUTPUT_DIR / "CV-Tran-Xuan-Bac-2026.pdf", default_cv)
     print("All CV PDFs generated successfully!")
 
 
