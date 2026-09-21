@@ -6,7 +6,7 @@ export default {
   title: "Scant Reports",
   theme: "dark",
   tags: ["python", "docker", "analysis"],
-  source: "https://github.com/xuanbackhoaibu/scant.git",
+  source: "https://github.com/trxuanbac/scant.git",
   description:
     "Self-developed reporting web app for registration, login, CSV/XLSX upload, automated data summaries, and report export to HTML, CSV, DOCX, and PDF.",
   components: [

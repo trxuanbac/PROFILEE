@@ -10,8 +10,8 @@ export default {
   title: "Student Performance",
   theme: "light",
   tags: ["python", "analysis"],
-  live: "https://xuanbackhoaibu.github.io/student_performance/",
-  source: "https://github.com/xuanbackhoaibu/student_performance.git",
+  live: "https://trxuanbac.github.io/student_performance/",
+  source: "https://github.com/trxuanbac/student_performance.git",
   description:
     "Data mining course project using the UCI Student Performance dataset to predict pass/fail outcomes with EDA, preprocessing, clustering, association rules, and classification models.",
   components: [

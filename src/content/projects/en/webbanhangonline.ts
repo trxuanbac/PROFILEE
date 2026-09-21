@@ -12,7 +12,7 @@ export default {
   title: "WebBanHangOnline",
   theme: "dark",
   tags: ["dotnet", "sqlserver", "docker", "javascript"],
-  source: "https://github.com/xuanbackhoaibu/WebBanHangOnline.git",
+  source: "https://github.com/trxuanbac/WebBanHangOnline.git",
   description:
     "Online fashion e-commerce website built with ASP.NET Core MVC, Entity Framework Core, SQL Server, Identity, SignalR, Docker Compose, Swagger, and BA/SA documentation.",
   components: [

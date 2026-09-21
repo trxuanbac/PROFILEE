@@ -48,10 +48,10 @@ with pymupdf.open(pdf_path) as pdf:
         assert normalize(fragment) in pdf_text, f"Download is missing online CV content: {fragment.strip()}"
     links = [link.get("uri", "") for page in pdf for link in page.get_links()]
     assert "mailto:Bxuan964@gmail.com" in links, "PDF email link must remain clickable"
-    assert "https://github.com/xuanbackhoaibu/WebBanHangOnline.git" in links
+    assert "https://github.com/trxuanbac/WebBanHangOnline.git" in links
     for label, destination in [
-        ("Xem Portfolio", "https://xuanbackhoaibu.github.io/PROFILEE/"),
-        ("Xem GitHub", "https://github.com/xuanbackhoaibu"),
+        ("Xem Portfolio", "https://trxuanbac.github.io/PROFILEE/"),
+        ("Xem GitHub", "https://github.com/trxuanbac"),
     ]:
         boxes = pdf[0].search_for(label)
         assert boxes, f"PDF must show the clickable label: {label}"

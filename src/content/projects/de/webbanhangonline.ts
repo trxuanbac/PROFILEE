@@ -12,7 +12,7 @@ export default {
   title: "WebBanHangOnline",
   theme: "dark",
   tags: ["dotnet", "sqlserver", "docker", "javascript"],
-  source: "https://github.com/xuanbackhoaibu/WebBanHangOnline.git",
+  source: "https://github.com/trxuanbac/WebBanHangOnline.git",
   description:
     "Website bán hàng thời trang xây dựng bằng ASP.NET Core MVC, Entity Framework Core, SQL Server, Identity, SignalR, Docker Compose, Swagger và bộ tài liệu BA/SA.",
   components: [

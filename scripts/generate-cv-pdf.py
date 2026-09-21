@@ -152,8 +152,8 @@ def build_cv(output_path, cv_data):
         Spacer(1, 1),
         Paragraph(
             'Gia Bình, Bắc Ninh · <a href="mailto:Bxuan964@gmail.com">Bxuan964@gmail.com</a> · '
-            '<a href="https://xuanbackhoaibu.github.io/PROFILEE/">Portfolio</a> · '
-            '<a href="https://github.com/xuanbackhoaibu">GitHub</a>',
+            '<a href="https://trxuanbac.github.io/PROFILEE/">Portfolio</a> · '
+            '<a href="https://github.com/trxuanbac">GitHub</a>',
             styles["contact"],
         ),
     ]
@@ -256,7 +256,7 @@ def main():
             {
                 "name": "WebBanHangOnline - Online Fashion E-commerce Website (ASP.NET Core)",
                 "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/WebBanHangOnline.git",
+                "github": "https://github.com/trxuanbac/WebBanHangOnline.git",
                 "bullets": [
                     "Analyzed business requirements and authored complete System Analyst documentation: BRD, SRS, Use Cases, ERD, and API specifications.",
                     "Designed relational database schema in SQL Server; modeled data relationships for catalog, variants, stock, cart, orders, and reviews.",
@@ -268,7 +268,7 @@ def main():
             {
                 "name": "Scant Reports - Data Ingestion and Multi-format Report Export System",
                 "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/scant.git",
+                "github": "https://github.com/trxuanbac/scant.git",
                 "bullets": [
                     "Gathered requirements and designed data processing workflows for user authentication, CSV/XLSX file ingestion, and automated report generation.",
                     "Defined role-based access control (Admin/User), audit log specifications, health check monitoring, and system backup/restore procedures.",
@@ -278,7 +278,7 @@ def main():
             {
                 "name": "Student Management System - System Analysis Course Project",
                 "year": "2024",
-                "github": "https://github.com/xuanbackhoaibu/PROFILEE",
+                "github": "https://github.com/trxuanbac/PROFILEE",
                 "bullets": [
                     "Analyzed functional requirements, modeled Use Case diagrams, designed ERD schema, and defined data integrity constraints in SQL Server.",
                 ],
@@ -301,7 +301,7 @@ def main():
             {
                 "name": "WebBanHangOnline - Online Fashion E-commerce Website (ASP.NET Core)",
                 "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/WebBanHangOnline.git",
+                "github": "https://github.com/trxuanbac/WebBanHangOnline.git",
                 "bullets": [
                     "Architected and built full e-commerce backend using ASP.NET Core MVC, EF Core, and SQL Server with seeded demo data.",
                     "Implemented authentication & role-based authorization using ASP.NET Core Identity, securing admin management and customer checkout workflows.",
@@ -313,7 +313,7 @@ def main():
             {
                 "name": "Scant Reports - Data Processing and Report Generation Web Application",
                 "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/scant.git",
+                "github": "https://github.com/trxuanbac/scant.git",
                 "bullets": [
                     "Developed backend services in Python for secure file ingestion (CSV/XLSX), batch data parsing, and multi-format report generation (HTML, CSV, DOCX, PDF).",
                     "Implemented user authentication, role-based access control, password reset workflows, audit logging, and automated backup/restore scripts.",
@@ -323,7 +323,7 @@ def main():
             {
                 "name": "Student Management System - Database & Backend Course Project",
                 "year": "2024",
-                "github": "https://github.com/xuanbackhoaibu/PROFILEE",
+                "github": "https://github.com/trxuanbac/PROFILEE",
                 "bullets": [
                     "Designed relational schema, implemented CRUD operations, stored procedures, and database constraints in SQL Server.",
                 ],
@@ -346,7 +346,7 @@ def main():
             {
                 "name": "WebBanHangOnline - Online Fashion E-commerce Website (ASP.NET Core)",
                 "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/WebBanHangOnline.git",
+                "github": "https://github.com/trxuanbac/WebBanHangOnline.git",
                 "bullets": [
                     "Designed comprehensive Postman test collections with automated test scripts validating HTTP status codes, response times, headers, and JSON schemas.",
                     "Conducted functional and boundary testing across 20+ API endpoints: authentication, product catalog, cart, orders, and admin analytics.",
@@ -358,7 +358,7 @@ def main():
             {
                 "name": "Scant Reports - Data Ingestion and Multi-format Report Export System",
                 "year": "2026",
-                "github": "https://github.com/xuanbackhoaibu/scant.git",
+                "github": "https://github.com/trxuanbac/scant.git",
                 "bullets": [
                     "Validated file upload endpoints (CSV/XLSX) testing boundary conditions, file size limits, MIME type validation, and malformed file handling.",
                     "Tested authentication, session management, role-based access control (Admin/User), password reset workflows, and audit log tracking.",
@@ -368,7 +368,7 @@ def main():
             {
                 "name": "Student Management System - Testing & Validation Course Project",
                 "year": "2024",
-                "github": "https://github.com/xuanbackhoaibu/PROFILEE",
+                "github": "https://github.com/trxuanbac/PROFILEE",
                 "bullets": [
                     "Designed test cases and executed SQL queries to validate student enrollment, grade calculations, and database integrity constraints.",
                 ],

@@ -5,7 +5,7 @@ import Link from "../../../components/Link.vue";
 import { preloaderVisible } from "../../../composables/usePreloader";
 import { t } from "../../../i18n/utils/translate";
 
-const cvPagePath = `${import.meta.env.BASE_URL}files/CV-Tran-Xuan-Bac.html?v=20260921-vi-links`;
+const cvPagePath = `${import.meta.env.BASE_URL}files/CV-Tran-Xuan-Bac.html?v=20260921-trxuanbac`;
 </script>
 
 <template>
@@ -26,7 +26,7 @@ const cvPagePath = `${import.meta.env.BASE_URL}files/CV-Tran-Xuan-Bac.html?v=202
               <Button renderAs="div" variant="accent" size="sm">{{ t("download-cv") }}</Button>
             </Link>
             <Link
-              href="https://github.com/xuanbackhoaibu"
+              href="https://github.com/trxuanbac"
               external
               class="hero-action"
               data-cursor="arrow-external"

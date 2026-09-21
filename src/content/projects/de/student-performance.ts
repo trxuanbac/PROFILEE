@@ -10,8 +10,8 @@ export default {
   title: "Student Performance",
   theme: "light",
   tags: ["python", "analysis"],
-  live: "https://xuanbackhoaibu.github.io/student_performance/",
-  source: "https://github.com/xuanbackhoaibu/student_performance.git",
+  live: "https://trxuanbac.github.io/student_performance/",
+  source: "https://github.com/trxuanbac/student_performance.git",
   description:
     "Bài tập lớn khai phá dữ liệu dùng bộ Student Performance từ UCI để dự đoán đậu/rớt bằng EDA, tiền xử lý, phân cụm, luật kết hợp và mô hình phân loại.",
   components: [
