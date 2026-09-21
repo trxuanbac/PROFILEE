@@ -49,6 +49,14 @@ with pymupdf.open(pdf_path) as pdf:
     links = [link.get("uri", "") for page in pdf for link in page.get_links()]
     assert "mailto:Bxuan964@gmail.com" in links, "PDF email link must remain clickable"
     assert "https://github.com/xuanbackhoaibu/WebBanHangOnline.git" in links
+    for label, destination in [
+        ("Xem Portfolio", "https://xuanbackhoaibu.github.io/PROFILEE/"),
+        ("Xem GitHub", "https://github.com/xuanbackhoaibu"),
+    ]:
+        boxes = pdf[0].search_for(label)
+        assert boxes, f"PDF must show the clickable label: {label}"
+        assert any(link.get("uri") == destination and link["from"].intersects(boxes[0])
+                   for link in pdf[0].get_links()), f"{label} must open the correct profile"
     print(f"PDF matches all {len(content.content)} online content fragments across {len(pdf)} page(s).")
 
     # Table cells and ordinary paragraphs must share the section rules' margins.

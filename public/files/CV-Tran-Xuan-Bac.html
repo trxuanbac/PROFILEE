@@ -102,6 +102,22 @@
         line-height: 1.35;
       }
 
+      .contact .profile-link {
+        display: inline-block;
+        white-space: nowrap;
+        text-decoration-thickness: 1.5px;
+      }
+
+      .contact .profile-link:hover {
+        color: #003f80;
+        background: #eef5fc;
+      }
+
+      .contact a:focus-visible {
+        outline: 2px solid var(--link);
+        outline-offset: 3px;
+      }
+
       section {
         margin-top: 20px;
       }
@@ -287,7 +303,7 @@
   <body>
     <div class="toolbar">
       <a href="../index.html">Quay lại trang cá nhân</a>
-      <a href="./CV-Tran-Xuan-Bac-2026.pdf?v=20260920-vi-education" download="CV-Tran-Xuan-Bac-2026.pdf" onclick="downloadPdf(event)">Tải CV PDF</a>
+      <a href="./CV-Tran-Xuan-Bac-2026.pdf?v=20260921-vi-links" download="CV-Tran-Xuan-Bac-2026.pdf" onclick="downloadPdf(event)">Tải CV PDF</a>
       <button type="button" onclick="window.print()">In CV</button>
     </div>
 
@@ -298,8 +314,8 @@
         <p class="contact">
           Gia Bình, Bắc Ninh ·
           <a href="mailto:Bxuan964@gmail.com">Bxuan964@gmail.com</a> ·
-          <a href="https://xuanbackhoaibu.github.io/PROFILEE/">Trang cá nhân</a> ·
-          <a href="https://github.com/xuanbackhoaibu">GitHub</a>
+          <a class="profile-link" href="https://xuanbackhoaibu.github.io/PROFILEE/"><strong>Xem Portfolio</strong></a> ·
+          <a class="profile-link" href="https://github.com/xuanbackhoaibu"><strong>Xem GitHub</strong></a>
         </p>
       </header>
 

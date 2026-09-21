@@ -52,6 +52,8 @@ def inline(element):
         elif child.get("class") == "italic":
             text += f"<i>{content}</i>"
         elif child.tag == "a":
+            if "profile-link" in child.get("class", "").split():
+                content = f"<u>{content}</u>"
             text += f'<a href="{escape(child.get("href"), quote=True)}" color="#0563c1">{content}</a>'
         else:
             text += content
