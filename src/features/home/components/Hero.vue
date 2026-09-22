@@ -5,7 +5,7 @@ import Link from "../../../components/Link.vue";
 import { preloaderVisible } from "../../../composables/usePreloader";
 import { t } from "../../../i18n/utils/translate";
 
-const cvPagePath = `${import.meta.env.BASE_URL}files/CV-Tran-Xuan-Bac.html?v=20260922-data-mining`;
+const cvPagePath = `${import.meta.env.BASE_URL}files/CV-Tran-Xuan-Bac.html?v=20260922-english`;
 </script>
 
 <template>

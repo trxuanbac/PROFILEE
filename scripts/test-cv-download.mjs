@@ -13,12 +13,12 @@ assert.equal(existsSync(pdfPath), true, `CV PDF file should exist: ${pdfPath}`);
 
 assert.match(
   heroVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-data-mining`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-english`;/,
   "Hero Download CV button should open the cache-busted CV page first",
 );
 assert.match(
   contactVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-data-mining`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-english`;/,
   "Contact Download CV link should open the cache-busted CV page first",
 );
 assert.doesNotMatch(
@@ -29,7 +29,7 @@ assert.doesNotMatch(
 
 assert.match(
   cvHtml,
-  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260922-data-mining"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Tải CV PDF<\/a>/,
+  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260922-english"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Download CV PDF<\/a>/,
   "CV page should have a cache-busted PDF download link",
 );
 assert.match(
@@ -39,12 +39,12 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /Mong muốn vận dụng kiến thức chuyên ngành vào các nghiệp vụ và dự án thực tế của công ty, đồng thời nâng cao kỹ năng phát triển phần mềm, cơ sở dữ liệu và phân tích hệ thống\.\s+Hướng đến việc đóng góp hiệu quả cho các dự án của doanh nghiệp và phát triển thành nhân sự có chuyên môn vững vàng trong tương lai\./,
+  /Seeking to apply my academic knowledge to real business processes and projects while strengthening my skills in software development, databases, and systems analysis\.\s+Aiming to contribute effectively to company projects and grow into a professional with strong technical expertise\./,
   "CV career objective should use the updated professional development summary",
 );
 assert.match(
   cvHtml,
-  /<div><strong>Ngôn ngữ lập trình:<\/strong><\/div>\s+<div>C#, Python, JavaScript, SQL, HTML\/CSS<\/div>/,
+  /<div><strong>Languages:<\/strong><\/div>\s+<div>C#, Python, JavaScript, SQL, HTML\/CSS<\/div>/,
   "CV skills should include the requested languages",
 );
 assert.match(
@@ -54,12 +54,12 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /<div><strong>Cơ sở dữ liệu:<\/strong><\/div>\s+<div>SQL Server, PostgreSQL, MySQL, SQLite<\/div>/,
+  /<div><strong>Databases:<\/strong><\/div>\s+<div>SQL Server, PostgreSQL, MySQL, SQLite<\/div>/,
   "CV skills should include the requested databases",
 );
 assert.match(
   cvHtml,
-  /<div><strong>Công cụ và khác:<\/strong><\/div>\s+<div>Git\/GitHub, Docker\/Docker Compose, Postman<\/div>/,
+  /<div><strong>Tools:<\/strong><\/div>\s+<div>Git\/GitHub, Docker\/Docker Compose, Postman<\/div>/,
   "CV skills should include the requested tools",
 );
 assert.doesNotMatch(
@@ -69,23 +69,23 @@ assert.doesNotMatch(
 );
 assert.match(
   cvHtml,
-  /WebBanHangOnline - Website thương mại điện tử thời trang \| Dự án cá nhân/,
-  "CV WebBanHangOnline project title should use Vietnamese",
+  /WebBanHangOnline - Fashion E-commerce Website \| Personal Project/,
+  "CV WebBanHangOnline project title should use English",
 );
 assert.match(
   cvHtml,
-  /Xây dựng hệ thống thương mại điện tử thời trang bằng ASP\.NET Core MVC, Entity Framework Core, SQL Server, Bootstrap và jQuery\./,
+  /Built a fashion e-commerce system using ASP\.NET Core MVC, Entity Framework Core, SQL Server, Bootstrap, and jQuery\./,
   "CV WebBanHangOnline project should include the shortened stack summary",
 );
 assert.match(
   cvHtml,
-  /Phân tích và xây dựng tài liệu hệ thống gồm BRD, SRS, Use Case, ERD, đặc tả API, tài liệu OpenAPI\/Swagger, bộ yêu cầu Postman và các ca kiểm thử API\./,
+  /Analyzed requirements and prepared system documentation, including BRD, SRS, Use Cases, ERD, API specifications, OpenAPI\/Swagger documentation, Postman collections, and API test cases\./,
   "CV WebBanHangOnline project should include the system documentation summary",
 );
 assert.doesNotMatch(
   cvHtml,
-  /Career Objective|Education|Technical Skills|Additional Coursework \/ Analysis|Personal Project|Course Project|Developed |Implemented |Researched /,
-  "Online CV should no longer contain English headings or project descriptions",
+  /Mục tiêu nghề nghiệp|Học vấn|Kỹ năng chuyên môn|Dự án cá nhân|Đồ án|Phát triển|Triển khai/,
+  "Online CV should no longer contain Vietnamese headings or project descriptions",
 );
 assert.doesNotMatch(
   cvHtml,
@@ -129,7 +129,7 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /<button type="button" onclick="window\.print\(\)">In CV<\/button>/,
+  /<button type="button" onclick="window\.print\(\)">Print CV<\/button>/,
   "Print action should remain available as a button",
 );
 

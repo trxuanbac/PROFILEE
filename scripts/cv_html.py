@@ -72,7 +72,7 @@ def build_online_cv(output_path, html_path, styles):
         str(output_path), pagesize=A4,
         rightMargin=12 * mm, leftMargin=12 * mm,
         topMargin=12 * mm, bottomMargin=12 * mm,
-        title="CV Trần Xuân Bắc - Tiếng Việt", author="Trần Xuân Bắc",
+        title="CV Trần Xuân Bắc - English", author="Trần Xuân Bắc",
     )
     # Use the same printable width for paragraphs, rules, and tables.
     # ReportLab's default frame adds padding that tables sized to doc.width exceed.

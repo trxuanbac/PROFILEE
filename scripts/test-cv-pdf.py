@@ -50,8 +50,8 @@ with pymupdf.open(pdf_path) as pdf:
     assert "mailto:Bxuan964@gmail.com" in links, "PDF email link must remain clickable"
     assert "https://github.com/trxuanbac/WebBanHangOnline.git" in links
     for label, destination in [
-        ("Xem Portfolio", "https://trxuanbac.github.io/PROFILEE/"),
-        ("Xem GitHub", "https://github.com/trxuanbac"),
+        ("View Portfolio", "https://trxuanbac.github.io/PROFILEE/"),
+        ("View GitHub", "https://github.com/trxuanbac"),
     ]:
         boxes = pdf[0].search_for(label)
         assert boxes, f"PDF must show the clickable label: {label}"
@@ -65,12 +65,19 @@ with pymupdf.open(pdf_path) as pdf:
                  if drawing["type"] == "s" and drawing["rect"].width > page.rect.width / 2]
         assert rules, "CV page must have section dividers"
         left, right = rules[0].x0, rules[0].x1
-        for label in ["HỌC VẤN", "Trường Đại học Đại Nam", "Tiếng Anh:",
-                      "KỸ NĂNG CHUYÊN MÔN", "Ngôn ngữ lập trình:", "DỰ ÁN",
+        for label in ["EDUCATION", "Dai Nam University", "English:",
+                      "TECHNICAL SKILLS", "Languages:", "PROJECTS",
                       "WebBanHangOnline -", "Scant Reports -", "Student Performance -"]:
-            for box in page.search_for(label):
+            if label.isupper():
+                boxes = [pymupdf.Rect(line["bbox"])
+                         for block in page.get_text("dict")["blocks"]
+                         for line in block.get("lines", [])
+                         if "".join(span["text"] for span in line["spans"]).strip() == label]
+            else:
+                boxes = page.search_for(label)
+            for box in boxes:
                 assert abs(box.x0 - left) < 0.5, f"{label} is offset from the left margin by {box.x0 - left:.1f}pt"
-        for label in ["Hà Nội, Việt Nam", "2023 – nay"]:
+        for label in ["Hanoi, Vietnam", "2023 – Present"]:
             for box in page.search_for(label):
                 assert abs(box.x1 - right) < 0.5, f"{label} must align with the right margin"
         for block in page.get_text("dict")["blocks"]:
