@@ -13,12 +13,12 @@ assert.equal(existsSync(pdfPath), true, `CV PDF file should exist: ${pdfPath}`);
 
 assert.match(
   heroVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-3months`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-skills`;/,
   "Hero Download CV button should open the cache-busted CV page first",
 );
 assert.match(
   contactVue,
-  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-3months`;/,
+  /const cvPagePath = `\$\{import\.meta\.env\.BASE_URL\}files\/CV-Tran-Xuan-Bac\.html\?v=20260922-skills`;/,
   "Contact Download CV link should open the cache-busted CV page first",
 );
 assert.doesNotMatch(
@@ -29,7 +29,7 @@ assert.doesNotMatch(
 
 assert.match(
   cvHtml,
-  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260922-3months"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Tải CV PDF<\/a>/,
+  /<a\s+href="\.\/CV-Tran-Xuan-Bac-2026\.pdf\?v=20260922-skills"\s+download="CV-Tran-Xuan-Bac-2026\.pdf"\s+onclick="downloadPdf\(event\)">Tải CV PDF<\/a>/,
   "CV page should have a cache-busted PDF download link",
 );
 assert.match(
@@ -49,7 +49,7 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /<div><strong>Backend:<\/strong><\/div>\s+<div>C#, ASP\.NET Core MVC\/Web API, Entity Framework Core, RESTful API, ASP\.NET Core Identity<\/div>/,
+  /<div><strong>Backend:<\/strong><\/div>\s+<div>ASP\.NET Core MVC\/Web API, Entity Framework Core, RESTful API, ASP\.NET Core Identity<\/div>/,
   "CV skills should include the requested backend stack",
 );
 assert.match(
@@ -59,7 +59,7 @@ assert.match(
 );
 assert.match(
   cvHtml,
-  /<div><strong>Công cụ và khác:<\/strong><\/div>\s+<div>Git, GitHub, Docker, Docker Compose, Postman, Bootstrap, jQuery, Gemini API<\/div>/,
+  /<div><strong>Công cụ và khác:<\/strong><\/div>\s+<div>Git\/GitHub, Docker\/Docker Compose, Postman<\/div>/,
   "CV skills should include the requested tools",
 );
 assert.doesNotMatch(
