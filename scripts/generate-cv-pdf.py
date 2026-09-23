@@ -237,6 +237,11 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     for name in ["CV-Tran-Xuan-Bac.pdf", "CV-Tran-Xuan-Bac-2026.pdf"]:
         build_online_cv(OUTPUT_DIR / name, OUTPUT_DIR / "CV-Tran-Xuan-Bac.html", get_styles())
+    build_online_cv(
+        OUTPUT_DIR / "CV-Tran-Xuan-Bac-VI.pdf",
+        OUTPUT_DIR / "CV-Tran-Xuan-Bac-VI.html", get_styles(),
+        title="CV Trần Xuân Bắc - Tiếng Việt",
+    )
     if args.online_only:
         return
 

@@ -86,3 +86,25 @@ with pymupdf.open(pdf_path) as pdf:
                 if text in ["2024", "2026"]:
                     assert abs(line["bbox"][2] - right) < 0.5, "Project years must align right"
     print("PDF table content, headings, and dates share consistent margins.")
+
+# The Vietnamese page must download its own complete PDF, not the English file.
+vi_html_path = Path("public/files/CV-Tran-Xuan-Bac-VI.html")
+vi_content = CVContent()
+vi_content.feed(vi_html_path.read_text())
+assert vi_content.download, "Vietnamese CV must offer a PDF download"
+vi_pdf_path = vi_html_path.parent / urlsplit(vi_content.download).path
+assert vi_pdf_path.resolve() != pdf_path.resolve(), "Each language must have a separate PDF"
+with pymupdf.open(vi_pdf_path) as pdf:
+    text = normalize(" ".join(page.get_text() for page in pdf))
+    for fragment in vi_content.content:
+        assert normalize(fragment) in text, f"Vietnamese PDF is missing: {fragment.strip()}"
+    assert "3 tháng" in text and "2023 – nay" in text
+    assert "đồ án môn học và nghiên cứu bổ sung" not in text
+    for label, destination in [
+        ("Xem Portfolio", "https://trxuanbac.github.io/PROFILEE/"),
+        ("Xem GitHub", "https://github.com/trxuanbac"),
+    ]:
+        boxes = pdf[0].search_for(label)
+        assert boxes and any(link.get("uri") == destination and link["from"].intersects(boxes[0])
+                             for link in pdf[0].get_links()), f"Vietnamese {label} link must work"
+    print(f"Vietnamese PDF matches all {len(vi_content.content)} content fragments across {len(pdf)} page(s).")
